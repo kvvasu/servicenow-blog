@@ -1,0 +1,279 @@
+[
+  {
+    "label": "Overview",
+    "items": [
+      {
+        "label": "Home",
+        "link": "/"
+      }
+    ]
+  },
+  {
+    "label": "Get Started",
+    "items": [
+      {
+        "label": "ServiceNow Architecture",
+        "slug": "servicenow-architecture"
+      },
+      {
+        "label": "Developer Onboarding Kit",
+        "slug": "servicenow-developer-onboarding-kit"
+      },
+      {
+        "label": "JavaScript and ServiceNow Roadmap",
+        "slug": "learn-javascript-and-servicenow-roadmap"
+      },
+      {
+        "label": "Modern JavaScript and ServiceNow Roadmap (2026)",
+        "slug": "learn-modern-javascript-and-servicenow-roadmap"
+      },
+      {
+        "label": "Training",
+        "slug": "servicenow-training"
+      },
+      {
+        "label": "Learn ServiceNow Development in 9 Hours",
+        "slug": "learn-servicenow-development-in-9-hours"
+      },
+      {
+        "label": "Knowledge Base and Troubleshooting",
+        "slug": "servicenow-knowledge-base"
+      },
+      {
+        "label": "Expert Blogs",
+        "slug": "servicenow-expert-blogs"
+      }
+    ]
+  },
+  {
+    "label": "Development",
+    "items": [
+      {
+        "label": "Client Scripts",
+        "slug": "servicenow-client-scripts"
+      },
+      {
+        "label": "Business Rules",
+        "slug": "servicenow-business-rules"
+      },
+      {
+        "label": "GlideQuery Examples",
+        "slug": "servicenow-glide-query-examples"
+      },
+      {
+        "label": "JavaScript Truthiness: ES12 vs Legacy Modes",
+        "slug": "servicenow-server-side-vs-client-side-javascript-truthiness-for-arrays-and-objects-across-es12-mode-and-legacy-modes"
+      },
+      {
+        "label": "Debugging Like Language Creators",
+        "slug": "how-to-debug-like-programming-language-creators-and-apply-their-thinking-to-the-servicenow-platform"
+      },
+      {
+        "label": "Script Tracer vs Script Debugger",
+        "slug": "how-is-script-tracer-different-from-script-debugger"
+      },
+      {
+        "label": "JavaScript Exercises with Solutions",
+        "slug": "javascript-exercises-with-solutions"
+      },
+      {
+        "label": "Building a Custom Application",
+        "slug": "servicenow-application-development"
+      },
+      {
+        "label": "Leave Management Application",
+        "slug": "servicenow-application-development-leave-management-system"
+      },
+      {
+        "label": "ServiceNow Generative AI",
+        "slug": "servicenow-generative-ai"
+      },
+      {
+        "label": "Production-Grade Prompt Ideas",
+        "slug": "servicenow-production-grade-prompt-ideas"
+      }
+    ]
+  },
+  {
+    "label": "ITSM & Platform",
+    "items": [
+      {
+        "label": "Tips for ServiceNow Admins",
+        "slug": "tips-for-servicenow-admins"
+      },
+      {
+        "label": "Tips and Tricks",
+        "slug": "servicenow-tips-and-tricks"
+      },
+      {
+        "label": "Core Tables by Module",
+        "slug": "core-servicenow-tables-categorized-by-module"
+      },
+      {
+        "label": "Production Instance Outage Analysis",
+        "slug": "a-detailed-analysis-of-servicenow-production-instance-outages"
+      },
+      {
+        "label": "Discovery Training",
+        "slug": "servicenow-discovery-training"
+      },
+      {
+        "label": "AWS Cloud Discovery",
+        "slug": "servicenow-aws-cloud-discovery"
+      },
+      {
+        "label": "Flow Designer Training",
+        "slug": "servicenow-flow-designer-training"
+      },
+      {
+        "label": "System Administration Training",
+        "slug": "servicenow-system-administration-training"
+      },
+      {
+        "label": "Developer Training",
+        "slug": "servicenow-developer-training"
+      },
+      {
+        "label": "ITSM Implementation Mock Training",
+        "slug": "servicenow-itsm-implementation-mock-training"
+      }
+    ]
+  },
+  {
+    "label": "Reviews & Checklists",
+    "items": [
+      {
+        "label": "Architecture Design Review Checklist",
+        "slug": "checklist-for-architecture-design-reviews"
+      },
+      {
+        "label": "Code Review Checklist",
+        "slug": "checklist-for-code-reviews"
+      },
+      {
+        "label": "Detailed Design Review Checklist",
+        "slug": "checklist-for-detailed-design-reviews"
+      },
+      {
+        "label": "High-Level Design Review Checklist",
+        "slug": "checklist-for-high-level-design-reviews"
+      },
+      {
+        "label": "Project Plan Review Checklist",
+        "slug": "checklist-for-project-plan-reviews"
+      },
+      {
+        "label": "Requirements Review Checklist",
+        "slug": "checklist-for-requirements-reviews"
+      },
+      {
+        "label": "Test Plan Review Checklist",
+        "slug": "checklist-for-test-plan-reviews"
+      }
+    ]
+  },
+  {
+    "label": "Interviews & Career",
+    "items": [
+      {
+        "label": "Integration Interview Questions",
+        "slug": "servicenow-integration-interview-questions-with-answers"
+      },
+      {
+        "label": "Interview Questions: Integration Failures",
+        "slug": "servicenow-interview-questions-and-answers-on-handling-failures-in-integrations"
+      },
+      {
+        "label": "Scenario-Based Interview Questions",
+        "slug": "scenario-based-interview-questions-in-servicenow"
+      },
+      {
+        "label": "Teacher, Trainer, Coach, Mentor",
+        "slug": "teacher-trainer-coach-mentor"
+      }
+    ]
+  },
+  {
+    "label": "Releases & AI Platform",
+    "items": [
+      {
+        "label": "A History of ServiceNow Releases",
+        "slug": "a-history-of-servicenow-releases-from-workflow-to-ai"
+      },
+      {
+        "label": "ServiceNow AI Platform Technology Stack",
+        "slug": "servicenow-ai-platform-technology-stack"
+      },
+      {
+        "label": "Zing vs AI Search",
+        "slug": "zing-vs-ai-search-in-servicenow"
+      }
+    ]
+  },
+  {
+    "label": "Talks & Episodes",
+    "items": [
+      {
+        "label": "JavaScript on the Now Platform",
+        "slug": "learn-javascript-on-the-now-platform-with-chuck-tomasi"
+      },
+      {
+        "label": "Integrations on the Now Platform",
+        "slug": "learn-integrations-on-the-now-platform-with-chuck-tomasi"
+      },
+      {
+        "label": "GraphQL on the Now Platform",
+        "slug": "learn-graphql-on-the-servicenow-platform-with-chuck-tomasi"
+      },
+      {
+        "label": "Building an App with Creator",
+        "slug": "learn-how-to-create-servicenow-builder-app-with-chuck-tomasi"
+      },
+      {
+        "label": "Let's Learn ECMAScript 2021 with Earl Duque",
+        "slug": "let-27s-learn-ecmascript-2021-with-earl-duque"
+      },
+      {
+        "label": "ECMAScript 2021 with Earl Duque \u2014 Session Repost",
+        "slug": "lets-learn-ecmascript-2021-with-earl-duque"
+      },
+      {
+        "label": "More JavaScript on the Platform",
+        "slug": "learn-more-javascript-on-the-servicenow-platform-with-earl-duque"
+      },
+      {
+        "label": "G\u00f6ran Lundqvist Episodes",
+        "slug": "goran-lundqvist-servicenow-episodes"
+      }
+    ]
+  },
+  {
+    "label": "References",
+    "items": [
+      {
+        "label": "ServiceNow Books",
+        "slug": "servicenow-books"
+      },
+      {
+        "label": "JavaScript Books",
+        "slug": "javascript-books"
+      },
+      {
+        "label": "Java Books",
+        "slug": "java-books"
+      },
+      {
+        "label": "Java Resources",
+        "slug": "hand-picked-collection-of-top-java-resources"
+      },
+      {
+        "label": "Disclaimer",
+        "slug": "disclaimer"
+      },
+      {
+        "label": "Dedication",
+        "slug": "dedication"
+      }
+    ]
+  }
+]

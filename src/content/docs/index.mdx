@@ -1,0 +1,99 @@
+---
+title: ServiceNow Notes
+description: "Original notes on the ServiceNow platform: architecture, scripting, ITSM operations, review checklists and interview preparation."
+template: splash
+tableOfContents: false
+hero:
+  tagline: >
+    Working notes on the Now Platform — architecture, scripting, operations and
+    the questions that come up in reviews and interviews. Every page here is
+    written from scratch; links point at the primary sources.
+  actions:
+    - text: Start with architecture
+      link: /servicenow-architecture/
+      icon: right-arrow
+      variant: primary
+    - text: Read the blog
+      link: /blog/
+      variant: minimal
+---
+
+import { Card, CardGrid, LinkCard, Code } from '@astrojs/starlight/components';
+
+## Pick a track
+
+<CardGrid>
+	<LinkCard
+		title="Get Started"
+		description="Architecture, onboarding, and a JavaScript roadmap that fits the platform instead of fighting it."
+		href="/servicenow-architecture/"
+	/>
+	<LinkCard
+		title="Development"
+		description="Client scripts, business rules, GlideQuery, and the execution-mode details that change behaviour."
+		href="/servicenow-client-scripts/"
+	/>
+	<LinkCard
+		title="ITSM & Platform"
+		description="Admin tips, core table maps, outage analysis, and how the pieces behave under load."
+		href="/tips-for-servicenow-admins/"
+	/>
+	<LinkCard
+		title="Reviews & Checklists"
+		description="What to look for before a change merges, and the questions that catch real defects."
+		href="/checklist-for-code-reviews/"
+	/>
+	<LinkCard
+		title="Interviews & Career"
+		description="Answers that show method rather than memorised definitions."
+		href="/servicenow-interview-questions-and-answers/"
+	/>
+	<LinkCard
+		title="Releases & AI Platform"
+		description="Release-cycle notes, and where the AI features actually sit in the stack."
+		href="/servicenow-ai-platform-technology-stack/"
+	/>
+</CardGrid>
+
+## Start from a record
+
+Most of these notes start with a query. Run this in a background script or the
+Xplore console on a sandbox instance, then read the result before you change
+anything. `GlideRecordSecure` applies the caller's access rules, which is what you
+want when the answer depends on who is asking.
+
+<Code
+	code={`var gr = new GlideRecordSecure('incident');
+gr.addQuery('active', true);
+gr.addQuery('assignment_group.name', 'Service Desk');
+gr.setLimit(5);
+gr.query();
+
+while (gr.next()) {
+  gs.info(gr.number + ' | ' + gr.short_description + ' | ' + gr.sys_updated_on);
+}`}
+	lang="javascript"
+	title="glide-record-read.js"
+/>
+
+## Latest writing
+
+<CardGrid>
+	<Card title="The Empty Array That Lies to You">
+		An empty array reads as false in one execution mode and true in another, and the integration fails in silence. [Read it](/blog/empty-array-truthiness/)
+	</Card>
+	<Card title="Debug in Order, Not by Instinct">
+		Reproduce, narrow, instrument, then fix. The third step is the one people skip. [Read it](/blog/debug-in-order/)
+	</Card>
+	<Card title="Zing Indexes, AI Search Ranks">
+		Two layers, two sets of tools. Tuning the wrong one wastes the afternoon. [Read it](/blog/zing-indexes-ai-search-ranks/)
+	</Card>
+</CardGrid>
+
+## How to read this site
+
+Facts here — table names, field names, code snippets, links — come from public
+sources and from notes taken while working with the platform. The explanations
+are mine. Anything that depends on a release number belongs in a release note,
+not a blog post, so check the official documentation for your own instance
+before you rely on it.

@@ -1,0 +1,527 @@
+/* ServiceNow Notes — Redis-Docs-style skin.
+   Rule: never re-implement Starlight's sidebar, hamburger or TOC behaviour.
+   Starlight owns layout and responsive switches; this file sets colour, type,
+   surface and measure through the --sl-* hooks plus a thin component skin.
+   Two schemes: near-black #0d1117 (dark) and white (light). Brand red #DC382D.
+   Red text on white needs #B3271E to clear 4.5:1; red text on #0d1117 needs
+   #FF7A6C for the same reason. #DC382D stays the solid-button / accent colour. */
+
+:root {
+  --snz-brand: #dc382d;
+  --snz-brand-hi: #ff7a6c; /* red that clears 4.5:1 on the dark surface */
+  --snz-brand-ink: #b3271e; /* red that clears 4.5:1 on white */
+  --snz-radius: 8px;
+  --snz-measure: 68ch;
+  --snz-panel: #f6f8fa;
+  --snz-border: #d0d7de;
+  --snz-border-strong: #8b949e;
+
+  --sl-font:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, 'Noto Sans', sans-serif;
+  --sl-font-mono:
+    ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono',
+    monospace;
+}
+
+/* ---- light ---- */
+:root[data-theme='light'] {
+  --sl-color-bg: #ffffff;
+  --sl-color-bg-nav: #ffffff;
+  --sl-color-bg-sidebar: #ffffff;
+  --sl-color-bg-inline-code: #f0f3f6;
+  --sl-color-hairline: #d8dee4;
+  --sl-color-hairline-light: #eaeef2;
+  --sl-color-hairline-shade: #d0d7de;
+  --sl-color-text: #1f2328;
+  --sl-color-accent-low: #ffe9e6;
+  --sl-color-accent: var(--snz-brand);
+  --sl-color-accent-high: var(--snz-brand-ink);
+  --sl-color-text-accent: var(--snz-brand-ink);
+  --sl-color-gray-1: #1f2328;
+  --sl-color-gray-2: #424a53;
+  --sl-color-gray-3: #57606a;
+  --sl-color-gray-4: #6e7781;
+  --sl-color-gray-5: #d0d7de;
+  --sl-color-gray-6: #eaeef2;
+  --sl-color-gray-7: #f6f8fa;
+}
+
+/* ---- dark ---- */
+:root[data-theme='dark'] {
+  --sl-color-bg: #0d1117;
+  --sl-color-bg-nav: #010409;
+  --sl-color-bg-sidebar: #0d1117;
+  --sl-color-bg-inline-code: #161b22;
+  --sl-color-hairline: #21262d;
+  --sl-color-hairline-light: #30363d;
+  --sl-color-hairline-shade: #30363d;
+  --sl-color-text: #e6edf3;
+  --sl-color-accent-low: #3d1512;
+  --sl-color-accent: var(--snz-brand);
+  --sl-color-accent-high: #ff9c90;
+  --sl-color-text-accent: var(--snz-brand-hi);
+  --snz-panel: #161b22;
+  --snz-border: #30363d;
+  --snz-border-strong: #6e7681;
+  --sl-color-gray-1: #f0f6fc;
+  --sl-color-gray-2: #c9d1d9;
+  --sl-color-gray-3: #8b949e;
+  --sl-color-gray-4: #6e7681;
+  --sl-color-gray-5: #30363d;
+  --sl-color-gray-6: #21262d;
+  --sl-color-gray-7: #161b22;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --sl-color-bg: #0d1117;
+    --sl-color-bg-nav: #010409;
+    --sl-color-bg-sidebar: #0d1117;
+    --sl-color-bg-inline-code: #161b22;
+    --sl-color-hairline: #21262d;
+    --sl-color-hairline-light: #30363d;
+    --sl-color-hairline-shade: #30363d;
+    --sl-color-text: #e6edf3;
+    --sl-color-accent-low: #3d1512;
+    --sl-color-accent: var(--snz-brand);
+    --sl-color-accent-high: #ff9c90;
+    --sl-color-text-accent: var(--snz-brand-hi);
+    --snz-panel: #161b22;
+    --snz-border: #30363d;
+  --snz-border-strong: #6e7681;
+    --sl-color-gray-1: #f0f6fc;
+    --sl-color-gray-2: #c9d1d9;
+    --sl-color-gray-3: #8b949e;
+    --sl-color-gray-4: #6e7681;
+    --sl-color-gray-5: #30363d;
+    --sl-color-gray-6: #21262d;
+    --sl-color-gray-7: #161b22;
+  }
+}
+
+/* ---- top bar ---- */
+header.header {
+  border-block-end: 1px solid var(--snz-border);
+  background-color: var(--sl-color-bg-nav);
+}
+
+.site-title span {
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  font-size: 1.35rem;
+}
+
+/* The Redis header pairs a red wordmark with a quiet red pill. Same idea,
+   pointed at this site's own entry page. */
+.snz-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid var(--snz-brand);
+  border-radius: 999px;
+  font-size: var(--sl-text-xs);
+  font-weight: 600;
+  color: var(--sl-color-text-accent);
+  text-decoration: none;
+}
+
+/* ---- hero ---- */
+.hero h1 {
+  letter-spacing: -0.02em;
+}
+
+.hero .actions a {
+  border-radius: var(--snz-radius);
+  font-weight: 600;
+}
+
+.hero .actions a.primary {
+  background-color: var(--snz-brand);
+  border-color: var(--snz-brand);
+  color: #ffffff;
+}
+
+.hero .actions a.primary:hover {
+  background-color: #c02e24;
+  border-color: #c02e24;
+}
+
+.hero .actions a.minimal {
+  border: 1px solid var(--snz-border);
+  padding-inline: 1rem;
+}
+
+/* ---- cards: darker panel, 1px border, thin red top line on the lead card ---- */
+.sl-link-card,
+.card {
+  background-color: var(--snz-panel);
+  border: 1px solid var(--snz-border);
+  border-radius: var(--snz-radius);
+  box-shadow: none;
+  transition:
+    border-color 120ms ease,
+    transform 120ms ease;
+}
+
+.sl-link-card:hover,
+.card:hover {
+  border-color: var(--snz-brand);
+}
+
+/* First card of a grid carries the thin red top line. Starlight puts the card
+   element straight into .card-grid, so match it as a child, not a descendant. */
+.card-grid > .sl-link-card:first-child,
+.card-grid > :first-child > .sl-link-card,
+.card-grid > .card:first-child {
+  border-block-start: 2px solid var(--snz-brand);
+}
+
+.card .title,
+.sl-link-card .title {
+  font-weight: 650;
+}
+
+/* ---- body type ---- */
+.sl-markdown-content {
+  overflow-wrap: break-word;
+}
+
+.sl-markdown-content :is(p, li) {
+  max-width: var(--snz-measure);
+}
+
+.sl-markdown-content h2 {
+  letter-spacing: -0.01em;
+  padding-block-end: 0.3rem;
+  border-block-end: 1px solid var(--sl-color-hairline);
+}
+
+/* A wide reference table must scroll inside its own box, never the page. */
+.sl-markdown-content table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-radius: var(--snz-radius);
+}
+
+.sl-markdown-content th {
+  background-color: var(--snz-panel);
+  font-weight: 650;
+}
+
+.sl-markdown-content :is(pre, .expressive-code) {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.expressive-code .frame {
+  border-radius: var(--snz-radius);
+}
+
+/* ---- right-hand TOC ---- */
+.right-sidebar-panel :where(a[aria-current='true']) {
+  color: var(--sl-color-text-accent);
+  border-inline-start-color: var(--snz-brand);
+  font-weight: 600;
+}
+
+/* ---- sidebar ---- */
+.sidebar-content .top-level > li > details > summary,
+.sidebar-content .top-level > li > a {
+  font-weight: 650;
+}
+
+.sidebar-content a[aria-current='page'] {
+  color: var(--sl-color-text-accent);
+  background-color: var(--sl-color-accent-low);
+  border-inline-start: 2px solid var(--snz-brand);
+  border-radius: 4px;
+}
+
+/* Heading anchors are a hover affordance, not decoration. Red on every H2 pulled
+   the eye off the headings themselves. */
+.sl-anchor-link {
+  opacity: 0.35;
+  color: var(--sl-color-gray-3);
+}
+
+.sl-anchor-link:hover,
+.sl-anchor-link:focus-visible {
+  opacity: 1;
+  color: var(--sl-color-text-accent);
+}
+
+/* Right-hand TOC: readable at rest, red only for the current section. */
+.right-sidebar a {
+  color: var(--sl-color-gray-2);
+}
+
+/* ---- tags / chips ---- */
+.snz-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.snz-tag {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sl-color-text-accent);
+  border: 1px solid var(--snz-border);
+  border-radius: 4px;
+  padding: 0.1rem 0.4rem;
+}
+
+
+/* ---- outline buttons ----
+   #d0d7de on white is 1.45:1, so the secondary button edge all but vanishes.
+   WCAG 2.2 non-text contrast wants 3:1 for the control boundary. */
+.sl-link-button:not(.primary),
+.hero .actions a:not([data-variant='primary']) {
+  border-color: var(--snz-border-strong);
+}
+
+.sl-link-button:not(.primary):hover,
+.hero .actions a:not([data-variant='primary']):hover {
+  border-color: var(--sl-color-text-accent);
+}
+
+/* ---- footer ----
+   Starlight renders the footer inside the content column. A 100vw trick overflows
+   that column (the column is not centred on the viewport once a sidebar and TOC
+   are present), so the footer is a bordered panel at content width instead. */
+.snz-footer {
+  margin-block: 3rem 2rem;
+  padding: 1.5rem 1.25rem 1rem;
+  border: 1px solid var(--snz-border);
+  border-radius: var(--snz-radius);
+  background-color: var(--snz-panel);
+}
+
+.snz-footer-inner {
+  display: grid;
+  gap: 1.75rem;
+  grid-template-columns: 1fr;
+}
+
+.snz-footer-brand p {
+  margin: 0.5rem 0 0;
+  font-size: var(--sl-text-sm);
+  color: var(--sl-color-gray-3);
+  max-width: 34ch;
+}
+
+.snz-footer-wordmark {
+  white-space: nowrap;
+  font-size: 1.25rem;
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  color: var(--snz-brand);
+}
+
+.snz-footer-cols {
+  display: grid;
+  gap: 1rem 1.5rem;
+  /* Columns size to their longest entry, so no link wraps mid-phrase. */
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+}
+
+.snz-footer-cols h2 {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sl-color-gray-3);
+  margin: 0 0 0.5rem;
+}
+
+.snz-footer-cols ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.snz-footer-cols li {
+  margin-block: 0.3rem;
+}
+
+.snz-footer-cols a {
+  font-size: var(--sl-text-sm);
+  color: var(--sl-color-gray-2);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.snz-footer-cols a:hover {
+  color: var(--sl-color-text-accent);
+  text-decoration: underline;
+}
+
+.snz-footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin-block-start: 2rem;
+  padding-block-start: 1rem;
+  border-block-start: 1px solid var(--sl-color-hairline);
+  font-size: var(--sl-text-xs);
+  color: var(--sl-color-gray-3);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --snz-measure: 72ch;
+  }
+
+  .sl-markdown-content h2 {
+    margin-block-start: 2.5rem;
+  }
+
+  .snz-footer-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- desktop: 1024px+ (Starlight shows sidebar + TOC here itself) ---- */
+@media (min-width: 1024px) {
+  :root {
+    --snz-measure: 74ch;
+  }
+}
+
+/* ---- motion preference ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Visible focus for keyboard users. Starlight supplies its own outline; this
+   widens it so it survives on tinted callout and card backgrounds. */
+:focus-visible {
+  outline: 2px solid var(--sl-color-text-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ---- card links get the whole title row ----
+   The LinkCard anchor wraps only the title text (22px tall), so a thumb aimed at
+   the card can miss it. Let the link own the card body. */
+.sl-link-card a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 44px;
+}
+
+/* ---- list links reach 24px ----
+   WCAG 2.2 AA (2.5.8) exempts a link inside a sentence, not one that stands alone
+   in a list item. */
+.sl-markdown-content li > a {
+  display: inline-block;
+  min-height: 24px;
+  padding-block: 2px;
+}
+
+/* ---- touch target size ----
+   ￼WCAG 2.2 AA (2.5.8) asks for 24x24 CSS px. 44px is the comfortable-thumb
+   number, so apply it where a thumb is used: below the desktop breakpoint. */
+@media (max-width: 1023px) {
+  .sidebar a,
+  .sl-menu a,
+  .right-sidebar a,
+  main nav a,
+  .sl-markdown-content a.button {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .sidebar a,
+  .sl-menu a {
+    padding-block: 0.5rem;
+  }
+
+  a.action,
+  .sl-link-button,
+  site-search button,
+  .sl-menu-button {
+    min-height: 44px;
+  }
+}
+
+/* ---- wide tables scroll instead of breaking the layout ----
+   rehypeScrollableTables in astro.config.mjs wraps every table in
+   div.table-scroll[tabindex=0], so the scroll box is reachable by keyboard. */
+.table-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+  margin-block: 1.25rem;
+}
+
+.table-scroll table {
+  margin-block: 0;
+  /* Starlight makes <table> itself display:block + overflow:auto to scroll. That
+     leaves a scroll box no keyboard user can reach. The wrapper owns the scroll
+     now, so put the table back to normal table layout. */
+  display: table;
+  overflow: visible;
+}
+/* ---- filetree content component ----
+   ```filetree fences from src/lib/remark-content-blocks.mjs render here. */
+.snz-tree {
+  margin-block: 1.25rem;
+  font-family: var(--sl-font-mono);
+  font-size: var(--sl-text-sm);
+  color: var(--sl-color-text);
+}
+
+.snz-tree > details > .snz-tree-children {
+  border-inline-start: 2px solid var(--sl-color-hairline);
+  margin-inline-start: 0.9rem;
+  padding-inline-start: 1.25rem;
+}
+
+.snz-tree summary {
+  cursor: pointer;
+  padding-block: 0.25rem;
+  padding-inline: 0.35rem;
+  border-radius: var(--snz-radius);
+  color: var(--sl-color-text);
+}
+
+.snz-tree summary:hover {
+  background: var(--sl-color-bg-inline-code);
+}
+
+.snz-tree summary::marker {
+  color: var(--sl-color-text-accent);
+}
+
+.snz-tree-children .snz-tree-children {
+  border-inline-start: 2px solid var(--sl-color-hairline);
+  margin-inline-start: 0.9rem;
+  padding-inline-start: 1.25rem;
+}
+
+.snz-tree-file {
+  display: block;
+  padding-block: 0.2rem;
+  padding-inline: 0.35rem;
+  color: var(--sl-color-text);
+}

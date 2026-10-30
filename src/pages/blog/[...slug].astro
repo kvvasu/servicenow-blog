@@ -1,0 +1,82 @@
+---
+import { getCollection, render } from 'astro:content';
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import sidebar from '../../data/sidebar.json';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const fmt = new Intl.DateTimeFormat('en-GB', { dateStyle: 'medium' });
+
+// StarlightPage does not derive headings outside the docs collection, so read them
+// from the markdown. The slug rule matches Astro's default: lower-case, punctuation
+// dropped, spaces to hyphens.
+const slugify = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N} -]/gu, '')
+    .trim()
+    .replace(/\s+/g, '-');
+
+const headings = (post.body ?? '')
+  .split('\n')
+  .map((line) => line.match(/^(#{2,3})\s+(.*)$/))
+  .filter((m): m is RegExpMatchArray => m !== null)
+  .map((m) => ({
+    depth: m[1].length,
+    slug: slugify(m[2].replace(/[`*_[\]()]/g, '')),
+    text: m[2].replace(/[`*_]/g, ''),
+  }));
+---
+
+<StarlightPage
+  frontmatter={{
+    title: post.data.title,
+    description: post.data.description,
+    tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 3 },
+  }}
+  {headings}
+  {sidebar}
+>
+  <p class="meta">
+    <time datetime={post.data.date.toISOString()}>{fmt.format(post.data.date)}</time>
+    {post.data.tags.length > 0 && <span> · {post.data.tags.join(', ')}</span>}
+  </p>
+
+  <article class="post">
+    <Content />
+  </article>
+
+  <p class="back"><a href="/blog/">All posts</a></p>
+
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.data.title,
+    description: post.data.description,
+    datePublished: post.data.date.toISOString(),
+    keywords: post.data.tags.join(', '),
+    author: { '@type': 'Organization', name: 'ServiceNow Notes' },
+    mainEntityOfPage: `${Astro.site}blog/${post.id}/`,
+  })} />
+</StarlightPage>
+
+<style>
+  .meta {
+    font-size: var(--sl-text-xs);
+    color: var(--sl-color-gray-3);
+    margin-block-end: 1.5rem;
+  }
+  .post {
+    max-width: 68ch;
+  }
+  .back {
+    margin-block-start: 2rem;
+    font-size: var(--sl-text-sm);
+  }
+</style>

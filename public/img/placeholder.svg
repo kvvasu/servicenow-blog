@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Image not archived">
+  <rect width="640" height="360" fill="#eef1f5"/>
+  <rect x="1" y="1" width="638" height="358" fill="none" stroke="#c3ccd8" stroke-width="2" stroke-dasharray="8 6"/>
+  <g fill="none" stroke="#8b9bb0" stroke-width="6" stroke-linecap="round">
+    <rect x="236" y="140" width="168" height="110" rx="10"/>
+    <path d="M262 224l44-46 34 34 24-24 32 36"/>
+  </g>
+  <text x="320" y="290" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" fill="#5b6b80">Image not archived</text>
+</svg>

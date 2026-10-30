@@ -1,0 +1,89 @@
+---
+// Starlight `Footer` override: Redis-Docs-style multi-column footer.
+// Only real routes are linked, so no dead columns. Pagination stays where
+// Starlight put it, above the footer block.
+import Pagination from 'virtual:starlight/components/Pagination';
+
+const cols = [
+  {
+    title: 'Learn',
+    links: [
+      { label: 'Architecture', href: '/servicenow-architecture/' },
+      { label: 'Client scripts', href: '/servicenow-client-scripts/' },
+      { label: 'Business rules', href: '/servicenow-business-rules/' },
+      { label: 'Core tables', href: '/core-servicenow-tables-categorized-by-module/' },
+    ],
+  },
+  {
+    title: 'Practice',
+    links: [
+      { label: 'Code review checklist', href: '/checklist-for-code-reviews/' },
+      { label: 'Interview questions', href: '/servicenow-interview-questions-and-answers/' },
+      { label: 'Admin tips', href: '/tips-for-servicenow-admins/' },
+      { label: 'Release notes', href: '/servicenow-videos-episodes/' },
+    ],
+  },
+  {
+    title: 'Site',
+    links: [
+      { label: 'Blog', href: '/blog/' },
+      { label: 'Home', href: '/' },
+      { label: 'Sitemap', href: '/sitemap-index.xml' },
+      { label: 'GitHub', href: 'https://github.com/kvvasu' },
+    ],
+  },
+  {
+    title: 'Sources',
+    links: [
+      { label: 'ServiceNow docs', href: 'https://docs.servicenow.com/' },
+      { label: 'Developer portal', href: 'https://developer.servicenow.com/' },
+      { label: 'Now Learning', href: 'https://learning.servicenow.com/' },
+      { label: 'Community', href: 'https://www.servicenow.com/community/' },
+    ],
+  },
+];
+---
+
+<footer class="sl-flex">
+  <Pagination />
+  <div class="snz-footer">
+    <div class="snz-footer-inner">
+      <div class="snz-footer-brand">
+        <span class="snz-footer-wordmark">ServiceNow Notes</span>
+        <p>
+          Independent study notes on the Now Platform. Every paragraph written
+          from scratch. Not affiliated with ServiceNow.
+        </p>
+      </div>
+      <div class="snz-footer-cols">
+        {
+          cols.map((col) => (
+            <div>
+              <h2>{col.title}</h2>
+              <ul>
+                {col.links.map((l) => (
+                  <li>
+                    <a href={l.href}>{l.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+    <div class="snz-footer-legal">
+      <span>© 2026 ServiceNow Notes</span>
+      <span>Verify anything version-dependent against your own release.</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  @layer starlight.core {
+    footer {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  }
+</style>

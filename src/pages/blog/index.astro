@@ -1,0 +1,130 @@
+---
+import { getCollection } from 'astro:content';
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import sidebar from '../../data/sidebar.json';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+const fmt = new Intl.DateTimeFormat('en-GB', { dateStyle: 'medium' });
+---
+
+<StarlightPage
+  frontmatter={{
+    title: 'Blog',
+    description: 'Original posts on ServiceNow scripting, debugging, search, data modelling and interviews.',
+    tableOfContents: false,
+  }}
+  {sidebar}
+>
+  <p class="lede">
+    Longer pieces, written from the notes on this site. Every post names the page
+    it took its structure from and the primary sources behind its claims.
+  </p>
+
+  <ul class="post-grid">
+    {
+      posts.map((post) => (
+        <li class="post-card">
+          {post.data.tags.length > 0 && (
+            <ul class="snz-tags">
+              {post.data.tags.slice(0, 2).map((tag) => (
+                <li class="snz-tag">{tag}</li>
+              ))}
+            </ul>
+          )}
+          <h2>
+            <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+          </h2>
+          <p class="meta">
+            <time datetime={post.data.date.toISOString()}>{fmt.format(post.data.date)}</time>
+          </p>
+          <p class="summary">{post.data.description}</p>
+        </li>
+      ))
+    }
+  </ul>
+
+</StarlightPage>
+
+<style>
+  .lede {
+    max-width: 68ch;
+  }
+
+  /* Card grid. One column on a phone, two at 640, three on desktop. */
+  .post-grid {
+    list-style: none;
+    padding: 0;
+    margin-block: 2rem 0;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  .post-card {
+    position: relative;
+    background-color: var(--snz-panel);
+    border: 1px solid var(--snz-border);
+    border-radius: var(--snz-radius);
+    padding: 1.1rem 1.15rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 120ms ease;
+  }
+
+  .post-card:first-child {
+    border-block-start: 2px solid var(--snz-brand);
+  }
+
+  .post-card:hover {
+    border-color: var(--snz-brand);
+  }
+
+  .post-card h2 {
+    font-size: var(--sl-text-h4);
+    line-height: 1.3;
+    margin: 0 0 0.4rem;
+  }
+
+  .post-card h2 a {
+    color: var(--sl-color-text);
+    text-decoration: none;
+  }
+
+  .post-card h2 a:hover {
+    color: var(--sl-color-text-accent);
+    text-decoration: underline;
+  }
+
+  /* Whole card is the target, not only the words in the heading. */
+  .post-card h2 a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .meta {
+    font-size: var(--sl-text-xs);
+    color: var(--sl-color-gray-3);
+    margin: 0 0 0.5rem;
+  }
+
+  .summary {
+    margin: 0;
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-2);
+  }
+
+  @media (min-width: 640px) {
+    .post-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .post-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>
