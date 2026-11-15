@@ -3,6 +3,9 @@
 Notes site on the ServiceNow platform: architecture, scripting, ITSM operations,
 review checklists and interview preparation. Built with Astro + Starlight.
 
+**Live:** https://servicenow-blog.waasu02.workers.dev
+**Repo:** https://github.com/kvvasu/servicenow-blog
+
 ## Commands
 
 ```
@@ -11,7 +14,11 @@ pnpm dev                    # dev server at localhost:4321
 pnpm build                  # production build to dist/
 pnpm preview                # serve dist/
 pnpm explainer [slug]       # render src/explainers/<slug>.md -> public/explainers/<slug>.html
+pnpm deploy                 # build output -> Cloudflare Worker (wrangler.jsonc)
 ```
+
+Deploy: `pnpm build && pnpm deploy`. The worker is `servicenow-blog`; its
+static assets come from `dist/` as declared in `wrangler.jsonc`.
 
 Content checks (run before every commit):
 
