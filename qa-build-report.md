@@ -130,9 +130,9 @@ pnpm preview --port 4322
 ```
 
 Deploy-ready output: **`/mnt/d/kvvas/servicenow-blog/dist/`** (4.5 MB, static).
-Note: `dist/sitemap-0.xml` and every canonical URL use the placeholder domain
-`https://servicenow-notes.example`. Replace `SITE` in `astro.config.mjs` before
-deploying for real.
+Deployed domain: `https://servicenow-blog.waasu02.workers.dev`. `SITE` in
+`astro.config.mjs`, `public/robots.txt`, canonical URLs, OG URLs and the sitemap
+all use it.
 ## Post-reskin and post-prose re-verification (2026-10-28)
 
 The gate table above was measured before the reskin and before the prose pass.

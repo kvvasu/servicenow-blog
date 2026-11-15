@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://servicenow-notes.example/sitemap-index.xml
+Sitemap: https://servicenow-blog.waasu02.workers.dev/sitemap-index.xml

@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 import sidebar from './src/data/sidebar.json' with { type: 'json' };
 import { remarkContentBlocks } from './src/lib/remark-content-blocks.mjs';
 
-const SITE = 'https://servicenow-notes.example';
+const SITE = 'https://servicenow-blog.waasu02.workers.dev';
 
 // A wide table on a 320px screen must scroll, but a scroll box needs a keyboard
 // entry point. Wrap every table at build time so the wrapper can take focus.
