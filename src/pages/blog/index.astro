@@ -58,32 +58,33 @@ const fmt = new Intl.DateTimeFormat('en-GB', { dateStyle: 'medium' });
     padding: 0;
     margin-block: 2rem 0;
     display: grid;
-    gap: 1rem;
+    gap: 1.25rem;
     grid-template-columns: 1fr;
   }
 
   .post-card {
     position: relative;
-    background-color: var(--snz-panel);
-    border: 1px solid var(--snz-border);
-    border-radius: var(--snz-radius);
-    padding: 1.1rem 1.15rem 1.25rem;
+    background-color: var(--rp-surface);
+    border: 1px solid var(--rp-border);
+    border-radius: var(--rp-radius);
+    padding: 1.15rem 1.25rem 1.35rem;
     display: flex;
     flex-direction: column;
-    transition: border-color 120ms ease;
+    outline: 0 solid transparent;
+    transition: outline-color 120ms ease;
   }
 
-  .post-card:first-child {
-    border-block-start: 2px solid var(--snz-brand);
-  }
-
-  .post-card:hover {
-    border-color: var(--snz-brand);
+  .post-card:hover,
+  .post-card:focus-within {
+    outline: 2px solid var(--rp-border);
   }
 
   .post-card h2 {
-    font-size: var(--sl-text-h4);
-    line-height: 1.3;
+    font-family: var(--sl-font);
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1.2;
     margin: 0 0 0.4rem;
   }
 
@@ -93,7 +94,8 @@ const fmt = new Intl.DateTimeFormat('en-GB', { dateStyle: 'medium' });
   }
 
   .post-card h2 a:hover {
-    color: var(--sl-color-text-accent);
+    background-color: var(--rp-lime);
+    color: var(--rp-ink);
     text-decoration: underline;
   }
 
@@ -105,15 +107,16 @@ const fmt = new Intl.DateTimeFormat('en-GB', { dateStyle: 'medium' });
   }
 
   .meta {
-    font-size: var(--sl-text-xs);
-    color: var(--sl-color-gray-3);
+    font-size: 0.8125rem;
+    color: var(--rp-muted);
     margin: 0 0 0.5rem;
   }
 
   .summary {
     margin: 0;
-    font-size: var(--sl-text-sm);
-    color: var(--sl-color-gray-2);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--rp-fg);
   }
 
   @media (min-width: 640px) {

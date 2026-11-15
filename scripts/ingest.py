@@ -211,7 +211,10 @@ def sanitize_images(text: str, slug: str) -> tuple[str, list[str], list[str]]:
 
 
 SKIP_SLUGS = {"credits"}
-HAND_EDITED = {"servicenow-application-development-leave-management-system"}
+HAND_EDITED = {
+  "servicenow-application-development-leave-management-system",
+  "servicenow-integration-interview-questions-with-answers",
+}
 
 # Source headings that carry jargon. The rewrite targets the label, not the prose,
 # so the authored section key uses the fixed form and this map keeps them aligned.

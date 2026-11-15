@@ -47,6 +47,8 @@ export default defineConfig({
       description:
         'Original notes on the ServiceNow platform: architecture, scripting, ITSM operations, review checklists and interview preparation.',
       customCss: ['./src/styles/custom.css'],
+      // Light code blocks on paper stock; dark ones only in dark mode.
+      expressiveCode: { themes: ['github-light', 'github-dark'] },
       // Redis-Docs-style multi-column footer. Pagination still renders inside it.
       components: { Footer: './src/components/SiteFooter.astro' },
       // Manual sidebar. Autogenerate would flatten 59 pages into one column,

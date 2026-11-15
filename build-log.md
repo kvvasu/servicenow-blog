@@ -402,3 +402,24 @@ Date: 2026-10-29
 - Subagent delegation stayed unusable: the `freestack` alias resolves to `deepseek-ai/deepseek-v4-flash`, retired 2026-08-07, HTTP 410 on all 16 tasks. All rewriting ran in-session.
 - Duplicate page pair `let-27s-learn-ecmascript-2021-with-earl-duque` and `lets-learn-ecmascript-2021-with-earl-duque` still present. One must be dropped before deploy.
 - `SITE` in `astro.config.mjs` and the `robots.txt` sitemap URL are still placeholders.
+
+## Phase 9 — Repeat-style visual system (2026-11-15)
+
+Replaced the Redis-docs skin with a highlighter-on-paper system: cream canvas,
+ink type, one lime surface, hairline borders, 25px radii, zero shadows.
+
+| Step | Change |
+|---|---|
+| Fonts | `@fontsource/poppins` (500/600) + `@fontsource-variable/montserrat`, self-hosted |
+| Tokens | `--rp-*` palette/semantics in `custom.css`, mapped once to `--sl-color-*`; warm dark variant |
+| Type | Poppins 600 uppercase headings; Montserrat 400 17px / 1.5 body |
+| Hero | full-bleed lime band via clipped box-shadow; primary CTA is a white 25px card |
+| Components | cards, tables, code frames, pagination, search dialog, footer all restyled; blog cards rewritten |
+| Content components | filetree frame fixed (wrapper vs node class); `jsonview` meta parser fixed (`title=... open(n)`) |
+| Links | `/servicenow-interview-questions-and-answers/` and `/servicenow-videos-episodes/` pointed at live pages; dead internal targets now 0 |
+
+Checks: `pnpm build` 66 pages, `gates.py` PASS, `ste_check.py` fails 0 / notes 16,
+dead internal links 0, no horizontal overflow at 360px and 390px.
+
+Note: editing `src/lib/remark-content-blocks.mjs` does not invalidate Astro's
+markdown cache. Run `rm -rf node_modules/.astro` before the next build.

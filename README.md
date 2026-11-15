@@ -36,6 +36,22 @@ src/explainers/            visual explainer drafts (answer-me-with-html)
 public/                    favicon, og image, robots.txt
 ```
 
+## Visual system
+
+The skin is a highlighter-on-paper system:
+
+- **Canvas** warm cream `#ede7e2`, **surfaces** paper `#ffffff`, **ink** `#171717`.
+- **Lime** `#f5ff7d` is a surface colour only — the hero band and link hovers.
+  It never fills a button, a border or a word.
+- **Type** Poppins 600 uppercase for headings (29-37px, 1.2 line-height),
+  Montserrat 400 at 17px / 1.5 for body. Both self-hosted via Fontsource.
+- **Shape** 25px card radius, 20px image/table/code radius, 100px pills,
+  1px ink borders. No shadows; hover paints a 2px outline instead.
+- Dark mode keeps the same structure on an ink canvas.
+
+Tokens live in `src/styles/custom.css` as `--rp-*` (palette and semantics) and
+are mapped once onto Starlight's `--sl-color-*` hooks.
+
 ## Content components
 
 Fenced blocks in the docs collection render as structured content:

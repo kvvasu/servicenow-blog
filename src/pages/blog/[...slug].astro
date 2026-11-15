@@ -68,8 +68,8 @@ const headings = (post.body ?? '')
 
 <style>
   .meta {
-    font-size: var(--sl-text-xs);
-    color: var(--sl-color-gray-3);
+    font-size: 0.8125rem;
+    color: var(--rp-muted);
     margin-block-end: 1.5rem;
   }
   .post {
@@ -77,6 +77,11 @@ const headings = (post.body ?? '')
   }
   .back {
     margin-block-start: 2rem;
-    font-size: var(--sl-text-sm);
+    font-size: 0.9375rem;
+  }
+  .back a {
+    color: var(--rp-link);
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 </style>

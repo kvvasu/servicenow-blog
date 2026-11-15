@@ -142,6 +142,15 @@ Give every inbound record a key the source system controls, then make ServiceNow
 The Import Set API exposes a staging table over REST at /api/now/import/{table_name}. An external system posts an array of records, ServiceNow writes them straight into staging, then runs the transform map you attached to that table. Because the transform runs inline, the caller gets per-record results showing which rows inserted or failed. Large payloads can exceed size limits, and one bad row does not roll back the rest, so partial loads need their own reconciliation.
 ### 27. How do you pass dynamic parameters in RESTMessageV2?
 Define variables in the REST Message record as ${name} placeholders, then fill them at runtime with setStringParameter(). That method URL-encodes the value, which corrupts JSON bodies and query strings that need raw characters. setStringParameterNoEscape() writes the value untouched, so a developer uses it for body fragments and pairs it with proper escaping. Building the whole payload through string concatenation instead breaks on quotes, and one stray ampersand splits a query parameter.
+
+```jsonview title="Payload after runtime substitution" open(1)
+{
+  "table": "x_incident",
+  "short_description": "${name}",
+  "urgency": 2,
+  "comments": "Server ${host} is down"
+}
+```
 ### 28. What is the Table API vs Aggregate API vs Attachment API?
 The Table API at /api/now/table reads and writes full records. The Aggregate API at /api/now/stats returns counts, sums, averages and group-by results without sending record data. The Attachment API at /api/now/attachment uploads and downloads files. Use stats when the caller only needs numbers, because paging thousands of table rows to count them burns REST quota and slows the response. Note that aggregate results honour ACLs differently, so a user can see a count they cannot read record by record.
 ### 29. How do you transfer attachments in integration?
